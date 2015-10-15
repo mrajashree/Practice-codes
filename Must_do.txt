@@ -1,0 +1,7 @@
+1. hashmap in python: done
+2. pointers and dereferencing thoroughly
+3. data structures: importance, complexity
+    arrays,linked list, stack, queue, trees, hashtable
+4. Algos complexity
+5. When to free nodes
+6. Resume thorough

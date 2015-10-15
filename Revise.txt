@@ -1,0 +1,2 @@
+1. deleting from singly linked list, shift data backward
+2. check linkedlist palindrome using stack, two pointers, fast and slow
