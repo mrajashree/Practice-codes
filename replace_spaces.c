@@ -31,7 +31,7 @@ void replace_spaces(char *s, int len)
 
 int main()
 {
-	char s[] = "string with spac es";
+	char s[25] = "string with spac es";
 	
 	replace_spaces(s,strlen(s)+1);
 	

@@ -3,7 +3,7 @@
 #include<stdlib.h>
 
 #define MAX 5
-int queue[MAX],rear=-1,front=-1;
+int queue[MAX],rear=-1,front=-1, stack[MAX],top = -1;
 int visited[MAX];
 int adj[MAX][MAX];
 char graph[5][2] = {"a","b","c","d","e"};
@@ -40,6 +40,30 @@ int queue_empty()
 		return 0;
 }
 
+void push(int ele)
+{
+	if(top==MAX)
+		return;
+	stack[++top] = ele;
+}
+
+int pop()
+{
+	int ele;
+	if(top==-1)
+		return -1;
+	ele = stack[top--];
+	return ele;
+}
+
+int stackEmpty()
+{
+	if(top==-1)
+		return 1;
+	else
+		return 0;
+}
+
 int visit_dest()
 {
 	if(visited[dest] == 1)
@@ -54,31 +78,58 @@ void bfs(int start, int n)
 	for(i=0;i<n;i++)
 		visited[i] = 0;
 	insert(start);
-
+	visited[start] = 1;
+printf("%s->", graph[start]);
 	while(!queue_empty())
 	{
 		start = del();
-		printf("Deleted ele : %d, queue front : %d, rear : %d\n",start,front,rear );
+		//printf("Deleted ele : %d, queue front : %d, rear : %d\n",start,front,rear );
 		for(j=0;j<n;j++)
 		{
 			if(adj[start][j]==1 && visited[j]==0)
 			{
 				visited[j] = 1;
 				insert(j);
-				if(j==dest)
+				printf("%s->", graph[j]);
+				/*if(j==dest)
 				{
 					printf("Nodes connected\n");
 					b_flag = 1;
 					break;
-				}
+				}*/
 			}
 		}
-		if(b_flag)
-			break;
+		//if(b_flag)
+		//	break;
 	}
 
-	if(!b_flag)
-		printf("Nodes not connected\n");
+	//if(!b_flag)
+	//	printf("Nodes not connected\n");
+}
+
+void dfs(int start, int n)
+{
+	int i;
+	push(start);
+	for(i = 0;i < n;i++)
+		visited[i] = 0;
+	visited[start] = 1;
+	printf("%s->", graph[start]);
+	while(!stackEmpty())
+	{
+		start = pop();
+		for(i=0;i<n;i++)
+		{
+			if(adj[start][i]==1 && visited[i]==0)
+			{
+				printf("%s->", graph[i]);
+				push(i);
+				visited[i] = 1;
+
+			}
+		}
+	}
+
 }
 
 int main(int argc, char *argv[])
@@ -95,13 +146,14 @@ int main(int argc, char *argv[])
 	}
 
 	adj[0][1] = 1;
+	//adj[0][2] = 1;
 	adj[1][3] = 1;
 	adj[3][2] = 1;
 	adj[3][4] = 1;
 
 	for(i=0;i<num;i++)
 	{
-		printf("node: %s, src : %s\n", graph[i],argv[1]);
+		//printf("node: %s, src : %s\n", graph[i],argv[1]);
 		if(strcmp(graph[i],argv[1])==0)
 		{
 			src=i;
@@ -117,9 +169,10 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
-	printf("src : %d, dest : %d\n", src, dest);
+	//printf("src : %d, dest : %d\n", src, dest);
 
-	bfs(src,num);
+	//bfs(src,num);
+	dfs(src,num);
 }
 
 

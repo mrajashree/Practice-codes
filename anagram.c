@@ -16,14 +16,12 @@ int anagram(char *s1, char *s2)
 	}
 	memset(count,0,sizeof(count));
 	for(i=0; i < strlen(s1); i++)
-	{
 		count[s1[i]]++;
-		count[s2[i]]--;
-	}
-
-	for(i=0; i < 256; i++)
-		if(count[i])
+	for(i=0;i<strlen(s2);i++)
+	{
+		if(count[s2[i]]-1!=0)
 			return 0;
+	}
 
 	return 1;
 }
