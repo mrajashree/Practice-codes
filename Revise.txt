@@ -1,2 +1,7 @@
 1. deleting from singly linked list, shift data backward
 2. check linkedlist palindrome using stack, two pointers, fast and slow
+3. recursive depth and height functions return at least 1.
+4. int to char +
+5. constuct bst would take an array as an input, and indices start and end
+6. dup_linked list, int_str, max_wo_comp, check if binary tree is a bst
+7. test_and_set, compare_and_swap

@@ -32,9 +32,12 @@ void append(NODE *curr)
 	while(temp->next!=NULL)
 	{
 		if(temp->child==NULL)
+		{
 			temp = temp->next;
+			tail = tail->next;
+		}
 		else
 			append(temp->child);
 	}
-	tail = temp;
+	
 }
